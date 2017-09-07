@@ -1,9 +1,5 @@
-# Templates generated with Godot Engine 2.1 and Admob Module (Not Firebase)
+# Templates generated with Godot Engine 2.1.4 and GodotAdMob Module (No Firebase)
 
-This templates are compiled using Godot 2.1 (Stable) and this module (Admob).
+This templates are compiled with GodotAdMob module using Godot 2.1.4.
 
-For the compilation I change the minSDKVersion to 9 for reach more devices.
-
-For use this templates you can use the [Godot Documentation](http://docs.godotengine.org/en/stable/reference/compiling_for_android.html#installing-the-templates) for use the custom templates.
-
-:)
+To use this templates check out [Godot Documentation](http://docs.godotengine.org/en/stable/reference/compiling_for_android.html#installing-the-templates) section on using the custom templates.

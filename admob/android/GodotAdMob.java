@@ -24,7 +24,6 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 public class GodotAdMob extends Godot.SingletonBase
 {
-
 	private Activity activity = null; // The main activity of the game
 	private int instance_id = 0;
 
@@ -43,11 +42,11 @@ public class GodotAdMob extends Godot.SingletonBase
 
 	/**
 	 * Prepare for work with AdMob
-	 * @param boolean isReal Tell if the enviroment is for real or test
+	 * @param boolean is_real Tell if the enviroment is for real or test
 	 */
-	public void init(boolean isReal, int instance_id)
+	public void init(boolean is_real, int instance_id)
 	{
-		this.isReal = isReal;
+		this.isReal = is_real;
 		this.instance_id = instance_id;
 		Log.d("godot", "AdMob: init");
 	}
@@ -118,7 +117,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	 * Load a Rewarded Video
 	 * @param String id AdMod Rewarded video ID
 	 */
-	public void loadRewardedVideo(final String id) {
+	public void load_rewarded_video(final String id) {
 		activity.runOnUiThread(new Runnable()
 		{
 			@Override public void run()
@@ -137,7 +136,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	/**
 	 * Show a Rewarded Video
 	 */
-	public void showRewardedVideo() {
+	public void show_rewarded_video() {
 		activity.runOnUiThread(new Runnable()
 		{
 			@Override public void run()
@@ -156,9 +155,9 @@ public class GodotAdMob extends Godot.SingletonBase
 	/**
 	 * Load a banner
 	 * @param String id AdMod Banner ID
-	 * @param boolean isOnTop To made the banner top or bottom
+	 * @param boolean is_on_top To made the banner top or bottom
 	 */
-	public void loadBanner(final String id, final boolean isOnTop)
+	public void load_banner(final String id, final boolean is_on_top)
 	{
 		activity.runOnUiThread(new Runnable()
 		{
@@ -169,7 +168,7 @@ public class GodotAdMob extends Godot.SingletonBase
 					FrameLayout.LayoutParams.MATCH_PARENT,
 					FrameLayout.LayoutParams.WRAP_CONTENT
 				);
-				if(isOnTop) adParams.gravity = Gravity.TOP;
+				if(is_on_top) adParams.gravity = Gravity.TOP;
 				else adParams.gravity = Gravity.BOTTOM;
 
 				adView = new AdView(activity);
@@ -228,7 +227,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	/**
 	 * Show the banner
 	 */
-	public void showBanner()
+	public void show_banner()
 	{
 		activity.runOnUiThread(new Runnable()
 		{
@@ -293,7 +292,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	/**
 	 * Hide the banner
 	 */
-	public void hideBanner()
+	public void hide_banner()
 	{
 		activity.runOnUiThread(new Runnable()
 		{
@@ -311,7 +310,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	 * Get the banner width
 	 * @return int Banner width
 	 */
-	public int getBannerWidth()
+	public int get_banner_width()
 	{
 		return AdSize.SMART_BANNER.getWidthInPixels(activity);
 	}
@@ -320,7 +319,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	 * Get the banner height
 	 * @return int Banner height
 	 */
-	public int getBannerHeight()
+	public int get_banner_height()
 	{
 		return AdSize.SMART_BANNER.getHeightInPixels(activity);
 	}
@@ -332,7 +331,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	 * Load a interstitial
 	 * @param String id AdMod Interstitial ID
 	 */
-	public void loadInterstitial(final String id)
+	public void load_interstitial(final String id)
 	{
 		activity.runOnUiThread(new Runnable()
 		{
@@ -379,7 +378,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	/**
 	 * Show the interstitial
 	 */
-	public void showInterstitial()
+	public void show_interstitial()
 	{
 		activity.runOnUiThread(new Runnable()
 		{
@@ -453,10 +452,10 @@ public class GodotAdMob extends Godot.SingletonBase
 	 * @param Activity Main activity
 	 */
 	public GodotAdMob(Activity p_activity) {
-		registerClass("AdMob", new String[] {
+		registerClass("GodotAdMob", new String[] {
 			"init",
-			"loadBanner", "showBanner", "hideBanner", "getBannerWidth", "getBannerHeight", "resize",
-			"loadInterstitial", "showInterstitial", "loadRewardedVideo", "showRewardedVideo"
+			"load_banner", "show_banner", "hide_banner", "get_banner_width", "get_banner_height", "resize",
+			"load_interstitial", "show_interstitial", "load_rewarded_video", "show_rewarded_video"
 		});
 		activity = p_activity;
 	}

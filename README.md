@@ -19,7 +19,7 @@ In Example project goto Export > Target > Android:
 
 	Options:
 		Custom Package:
-			- place your apk from build
+			- point to the location of your custom-built template apks
 		Permissions on:
 			- Access Network State
 			- Internet
@@ -41,34 +41,34 @@ The following methods are available:
 ```python
 
 # Init AdMob
-# @param bool isReal Show real ad or test ad
+# @param bool is_real Show real ad or test ad
 # @param int instance_id The instance id from Godot (get_instance_ID())
-init(isReal, instance_id)
+init(is_real, instance_id)
 
 # Banner Methods
 # --------------
 
 # Load Banner Ads (and show inmediatly)
 # @param String id The banner unit id
-# @param boolean isTop Show the banner on top or bottom
-loadBanner(id, isTop)
+# @param boolean is_top Show the banner on top or bottom
+load_banner(id, is_top)
 
 # Show the banner
-showBanner()
+show_banner()
 
 # Hide the banner
-hideBanner()
+hide_banner()
 
 # Resize the banner (when orientation change for example)
 resize()
 
 # Get the Banner width
 # @return int Banner width
-getBannerWidth()
+get_banner_width()
 
 # Get the Banner height
 # @return int Banner height
-getBannerHeight()
+get_banner_height()
 
 # Callback on ad loaded (Banner)
 _on_admob_ad_loaded()
@@ -81,10 +81,10 @@ _on_admob_network_error()
 
 # Load Interstitial Ads
 # @param String id The interstitial unit id
-loadInterstitial(id)
+load_interstitial(id)
 
 # Show the interstitial ad
-showInterstitial()
+show_interstitial()
 
 # Callback for interstitial ad fail on load
 _on_interstitial_not_loaded()
@@ -100,10 +100,10 @@ _on_interstitial_close()
 
 # Load rewarded videos ads
 # @param String id The rewarded video unit id
-loadRewardedVideo(id)
+load_rewarded_video(id)
 
 # Show the rewarded video ad
-showRewardedVideo()
+show_rewarded_video()
 
 # Callback for rewarded video ad left application
 _on_rewarded_video_ad_left_application()
@@ -112,8 +112,8 @@ _on_rewarded_video_ad_left_application()
 _on_rewarded_video_ad_closed()
 
 # Callback for rewarded video ad failed to load
-# @param int errorCode the code of error
-_on_rewarded_video_ad_failed_to_load(errorCode)
+# @param int error_code the code of error
+_on_rewarded_video_ad_failed_to_load(error_code)
 
 # Callback for rewarded video ad loaded
 _on_rewarded_video_ad_loaded()
@@ -133,6 +133,7 @@ _on_rewarded_video_started()
 References
 -------------
 Based on the work of:
+* https://github.com/Shin-NiL/godot-admob
 * https://github.com/Mavhod/GodotAdmob
 
 License
