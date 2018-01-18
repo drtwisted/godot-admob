@@ -76,6 +76,15 @@ _on_admob_ad_loaded()
 # Callback on ad network error (Banner)
 _on_admob_network_error()
 
+# Callback on any error while loading banner
+_on_admob_load_banner_error(String reason)
+#
+# reason can be one of the values:
+#  - ERROR_CODE_INTERNAL_ERROR   
+#  - ERROR_CODE_INVALID_REQUEST
+#  - ERROR_CODE_NO_FILL
+#  - Code: X (where X is an error code)
+
 # Interstitial Methods
 # --------------------
 

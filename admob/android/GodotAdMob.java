@@ -191,25 +191,35 @@ public class GodotAdMob extends Godot.SingletonBase
 					@Override
 					public void onAdFailedToLoad(int errorCode)
 					{
-						String	str;
+						String	errorString;
+                        boolean networkError = false;
+                        
 						switch(errorCode) {
 							case AdRequest.ERROR_CODE_INTERNAL_ERROR:
-								str	= "ERROR_CODE_INTERNAL_ERROR";
+								errorString	= "ERROR_CODE_INTERNAL_ERROR";
 								break;
 							case AdRequest.ERROR_CODE_INVALID_REQUEST:
-								str	= "ERROR_CODE_INVALID_REQUEST";
+								errorString	= "ERROR_CODE_INVALID_REQUEST";
 								break;
 							case AdRequest.ERROR_CODE_NETWORK_ERROR:
-								str	= "ERROR_CODE_NETWORK_ERROR";
+								errorString	= "ERROR_CODE_NETWORK_ERROR";
+                                networkError = true;
 								GodotLib.calldeferred(instance_id, "_on_admob_network_error", new Object[]{ });
 								break;
 							case AdRequest.ERROR_CODE_NO_FILL:
-								str	= "ERROR_CODE_NO_FILL";
+								errorString	= "ERROR_CODE_NO_FILL";
 								break;
 							default:
-								str	= "Code: " + errorCode;
+								errorString	= "Code: " + errorCode;
 								break;
+
+                            if (networkError) return;
+                            
+                            GodotLib.calldeferred(instance_id, "_on_admob_load_banner_error", new Object[]{errorString});
 						}
+
+                        
+                        
 						Log.w(TAG, MODULE + ": onAdFailedToLoad -> " + str);
 					}
 				});
