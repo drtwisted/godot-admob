@@ -24,6 +24,9 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 public class GodotAdMob extends Godot.SingletonBase
 {
+    private final String TAG = "godo";
+    private final String MODULE = "AdMob";
+    
 	private Activity activity = null; // The main activity of the game
 	private int instance_id = 0;
 
@@ -48,7 +51,7 @@ public class GodotAdMob extends Godot.SingletonBase
 	{
 		this.isReal = is_real;
 		this.instance_id = instance_id;
-		Log.d("godot", "AdMob: init");
+		Log.d(TAG, MODULE + ": init");
 	}
 
 
@@ -66,44 +69,44 @@ public class GodotAdMob extends Godot.SingletonBase
 				{
 					@Override
 					public void onRewardedVideoAdLeftApplication() {
-						Log.w("godot", "AdMob: onRewardedVideoAdLeftApplication");
+						Log.w(TAG, MODULE + ": onRewardedVideoAdLeftApplication");
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_ad_left_application", new Object[] { });
 					}
 
 					@Override
 					public void onRewardedVideoAdClosed() {
-						Log.w("godot", "AdMob: onRewardedVideoAdClosed");
+						Log.w(TAG, MODULE + ": onRewardedVideoAdClosed");
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_ad_closed", new Object[] { });
 					}
 
 					@Override
 					public void onRewardedVideoAdFailedToLoad(int errorCode) {
-						Log.w("godot", "AdMob: onRewardedVideoAdFailedToLoad. errorCode: " + errorCode);
+						Log.w(TAG, MODULE + ": onRewardedVideoAdFailedToLoad. errorCode: " + errorCode);
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_ad_failed_to_load", new Object[] { errorCode });
 					}
 
 					@Override
 					public void onRewardedVideoAdLoaded() {
-						Log.w("godot", "AdMob: onRewardedVideoAdLoaded");
+						Log.w(TAG, MODULE + ": onRewardedVideoAdLoaded");
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_ad_loaded", new Object[] { });
 					}
 
 					@Override
 					public void onRewardedVideoAdOpened() {
-						Log.w("godot", "AdMob: onRewardedVideoAdOpened");
+						Log.w(TAG, MODULE + ": onRewardedVideoAdOpened");
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_ad_opened", new Object[] { });
 					}
 
 					@Override
 					public void onRewarded(RewardItem reward) {
-						Log.w("godot", "AdMob: " + String.format(" onRewarded! currency: %s amount: %d", reward.getType(),
+						Log.w(TAG, MODULE + ": " + String.format(" onRewarded! currency: %s amount: %d", reward.getType(),
 								reward.getAmount()));
 						GodotLib.calldeferred(instance_id, "_on_rewarded", new Object[] { reward.getType(), reward.getAmount() });
 					}
 
 					@Override
 					public void onRewardedVideoStarted() {
-						Log.w("godot", "AdMob: onRewardedVideoStarted");
+						Log.w(TAG, MODULE + ": onRewardedVideoStarted");
 						GodotLib.calldeferred(instance_id, "_on_rewarded_video_started", new Object[] { });
 					}
 				});
@@ -181,7 +184,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				{
 					@Override
 					public void onAdLoaded() {
-						Log.w("godot", "AdMob: onAdLoaded");
+						Log.w(TAG, MODULE + ": onAdLoaded");
 						GodotLib.calldeferred(instance_id, "_on_admob_ad_loaded", new Object[]{ });
 					}
 
@@ -207,7 +210,7 @@ public class GodotAdMob extends Godot.SingletonBase
 								str	= "Code: " + errorCode;
 								break;
 						}
-						Log.w("godot", "AdMob: onAdFailedToLoad -> " + str);
+						Log.w(TAG, MODULE + ": onAdFailedToLoad -> " + str);
 					}
 				});
 				layout.addView(adView, adParams);
@@ -236,7 +239,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				if (adView.getVisibility() == View.VISIBLE) return;
 				adView.setVisibility(View.VISIBLE);
 				adView.resume();
-				Log.d("godot", "AdMob: Show Banner");
+				Log.d(TAG, MODULE + ": Show Banner");
 			}
 		});
 	}
@@ -284,7 +287,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				}
 				adView.loadAd(adBuilder.build());
 
-				Log.d("godot", "AdMob: Banner Resized");
+				Log.d(TAG, MODULE + ": Banner Resized");
 			}
 		});
 	}
@@ -301,7 +304,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				if (adView.getVisibility() == View.GONE) return;
 				adView.setVisibility(View.GONE);
 				adView.pause();
-				Log.d("godot", "AdMob: Hide Banner");
+				Log.d(TAG, MODULE + ": Hide Banner");
 			}
 		});
 	}
@@ -343,7 +346,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				{
 					@Override
 					public void onAdLoaded() {
-						Log.w("godot", "AdMob: onAdLoaded");
+						Log.w(TAG, MODULE + ": onAdLoaded");
 						GodotLib.calldeferred(instance_id, "_on_interstitial_loaded", new Object[] { });
 					}
 
@@ -359,7 +362,7 @@ public class GodotAdMob extends Godot.SingletonBase
 						}
 						interstitialAd.loadAd(adBuilder.build());
 
-						Log.w("godot", "AdMob: onAdClosed");
+						Log.w(TAG, MODULE + ": onAdClosed");
 					}
 				});
 
@@ -387,7 +390,7 @@ public class GodotAdMob extends Godot.SingletonBase
 				if (interstitialAd.isLoaded()) {
 					interstitialAd.show();
 				} else {
-					Log.w("godot", "AdMob: _on_interstitial_not_loaded");
+					Log.w(TAG, MODULE + ": _on_interstitial_not_loaded");
 					GodotLib.calldeferred(instance_id, "_on_interstitial_not_loaded", new Object[] { });
 				}
 			}
